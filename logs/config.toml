@@ -1,0 +1,7 @@
+
+[paths]
+log_dir = "/media/jay/46782217201FB006/oravox/logflow/logs"
+
+[other]
+scan_root = "parent"
+max_recent_ideas = 5
