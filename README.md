@@ -1,10 +1,7 @@
 # README.md
 
-# Logflow CLI
-
-[![PyPI version](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
-[![Build](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions)
-
+# Logflow
+[📘 Quickstart Guide](docs/quickstart.md) – Learn how to install and use Logflow in minutes.
 
 A focused developer journaling and ideation loop.
 
@@ -122,41 +119,6 @@ Logflow is designed to:
 It's built for long-term sustainability of developer thought.
 
 ---
-
-
-## 🚀 Optional Features
-
-Logflow works out of the box with no dependencies, but you can enhance it with optional extras:
-
-### 🌈 Rich Console UI
-Improves CLI output with colors, tables, and interactive prompts.
-
-```bash
-poetry install --with rich
-```
-
-### ✨ Fancy Slug Support
-Generates cleaner slugs for filenames, with support for emojis, accents, and non-ASCII characters.
-
-```bash
-poetry install --with fancy_slugs
-```
-
-### 🧩 Combine Extras
-Install both optional features together:
-
-```bash
-poetry install --with rich,fancy_slugs
-```
-
-These extras are defined in your `pyproject.toml`:
-
-```toml
-[tool.poetry.extras]
-rich = ["rich"]
-fancy_slugs = ["python-slugify"]
-```
-
 
 ## 🔓 License
 MIT
