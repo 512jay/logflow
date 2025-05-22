@@ -1,5 +1,5 @@
 [project]
-name = "logflow"
+name = "logflow-cli"
 version = "0.1.0"
 description = "Focused developer journaling and ideation loop"
 authors = [{ name = "Jay Davis", email = "512jay@gmail.com" }]
@@ -10,7 +10,7 @@ requires-python = ">=3.8"
 keywords = ["cli", "developer-tools", "journaling", "productivity"]
 
 [tool.poetry]
-name = "logflow"
+name = "logflow-cli"
 version = "0.1.0"
 description = "A CLI tool for developers to log ideas, stay focused, and track completed work."
 authors = ["Oravox LLC <oravoxco@gmail.com>"]

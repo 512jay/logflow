@@ -1,6 +1,10 @@
 # README.md
 
-# Logflow
+# Logflow CLI
+
+[![PyPI version](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
+[![Build](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions)
+
 
 A focused developer journaling and ideation loop.
 

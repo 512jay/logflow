@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Poetry
+poetry.lock
+# (Optional: keep poetry.lock if you want reproducible builds)
+
+# Virtual Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Pytest & Coverage
+.cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# VS Code
+.vscode/
+
+# OS & Editor junk
+.DS_Store
+Thumbs.db
+
+# Logflow specific
+logflow_tests.zip
+*.bak
+*.swp
+*~
