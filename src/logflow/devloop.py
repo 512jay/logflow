@@ -15,9 +15,6 @@ try:
 except ImportError:
     console = None
 
-REPO_ROOT = get_repo_root()
-CONFIG = load_config()
-
 
 def show_indexed_recent_ideas(n: int = 5):
     """Display the most recent N non-deleted, non-completed idea titles from the idea folder."""
@@ -46,6 +43,10 @@ def show_indexed_recent_ideas(n: int = 5):
 
 def show_git_status():
     """Scan all Git repos under the configured root and display their working directory status."""
+    from logflow.paths import get_repo_root, load_config
+    REPO_ROOT = get_repo_root()
+    CONFIG = load_config()
+
     if CONFIG.get("scan_git", True) is False:
         return
 
@@ -112,7 +113,10 @@ def run_focus():
     printx(intro)
 
     show_git_status()
+    from logflow.paths import load_config
+    CONFIG = load_config()
     show_indexed_recent_ideas(n=CONFIG.get("max_recent_ideas", 5))
+
 
     prompt_msg = "[bold]What are you working on today?[/bold]" if console else "\nWhat are you working on today?"
     printx(prompt_msg)
