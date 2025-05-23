@@ -1,7 +1,15 @@
-# README.md
+### ✅ `README.md`:
 
+````md
 # Logflow
-[📘 Quickstart Guide](docs/quickstart.md) – Learn how to install and use Logflow in minutes.
+
+[![PyPI](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
+[![Downloads](https://static.pepy.tech/badge/logflow-cli)](https://pepy.tech/project/logflow-cli)
+[![Release](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+
+[📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md)
 
 A focused developer journaling and ideation loop.
 
@@ -19,13 +27,31 @@ A focused developer journaling and ideation loop.
 
 ---
 
-## 📦 Installation
+## 📦 Installation (Recommended: pipx)
 
-This is a standalone CLI tool. You can install it via Poetry (or eventually PyPI):
+Logflow is a Python CLI app — install it globally without polluting your system Python:
+
+```bash
+pip install pipx
+pipx ensurepath
+pipx install logflow-cli
+````
+
+Then run:
+
+```bash
+logflow init
+logflow help
+```
+
+---
+
+### 🔧 Alternative (Dev Setup with Poetry)
 
 ```bash
 poetry install
-poetry run logflow help
+poetry run logflow init
+poetry run logflow focus
 ```
 
 ---
@@ -33,27 +59,33 @@ poetry run logflow help
 ## 🧠 How Logflow Stores Data
 
 By default, Logflow stores data under:
+
 ```bash
 ~/.logflow/
 ```
+
 This includes:
-- `daily_logs/` – your developer logs
-- `idea_log.md` – list of quick thoughts
-- `ideas/` – structured .md files
+
+* `daily_logs/` – your developer logs
+* `idea_log.md` – list of quick thoughts
+* `ideas/` – structured .md files
 
 You can customize this in **two ways**:
 
 ### 1. 🔧 Use `LOGFLOW_HOME`
+
 Set a different base directory for all logs:
+
 ```bash
 export LOGFLOW_HOME=/my/project/logflow_data
 ```
 
 This makes all logs project-specific.
 
-
 ### 2. 📝 Use `config.toml`
+
 Inside your `LOGFLOW_HOME` or `~/.logflow/`, add:
+
 ```toml
 [paths]
 log_dir = "/path/to/logs/folder"
@@ -66,10 +98,13 @@ max_recent_ideas = 5
 This overrides even the environment variable and lets you split config from data.
 
 To generate this file:
+
 ```bash
 logflow init
 ```
+
 Or forcibly regenerate:
+
 ```bash
 logflow init --force
 ```
@@ -78,10 +113,10 @@ logflow init --force
 
 ## 💡 Use Cases
 
-- Solo dev journaling
-- Idea tracking across projects
-- Developer time tracking & status reporting
-- Task queue for future sprints
+* Solo dev journaling
+* Idea tracking across projects
+* Developer time tracking & status reporting
+* Task queue for future sprints
 
 ---
 
@@ -112,17 +147,21 @@ logflow help                     # Command list
 ## 🎯 Philosophy
 
 Logflow is designed to:
-- Work with or without Git
-- Require zero setup, but allow full config
-- Help developers reflect, prioritize, and focus
+
+* Work with or without Git
+* Require zero setup, but allow full config
+* Help developers reflect, prioritize, and focus
 
 It's built for long-term sustainability of developer thought.
 
 ---
 
 ## 🔓 License
+
 MIT
 
 ---
 
 ### 📣 Maintained by [Oravox LLC](mailto:oravoxco@gmail.com) — freely available for solo devs, teams, and contributors.
+
+```
