@@ -1,5 +1,7 @@
 # src/logflow/devloop.py
 
+import shlex
+import argparse
 from datetime import datetime
 from pathlib import Path
 import subprocess
@@ -14,6 +16,19 @@ try:
     console = Console()
 except ImportError:
     console = None
+
+
+
+def parse_focus_input(text):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("summary", nargs="?")
+    parser.add_argument("--title")
+    parser.add_argument("--tag", nargs="+")
+    try:
+        args, _ = parser.parse_known_args(shlex.split(text))
+        return args.summary or args.title, args.title, None, args.tag
+    except Exception:
+        return text.strip(), None, None, []
 
 
 def show_indexed_recent_ideas(n: int = 5):
@@ -118,7 +133,7 @@ def run_focus():
     show_indexed_recent_ideas(n=CONFIG.get("max_recent_ideas", 5))
 
 
-    prompt_msg = "[bold]What are you working on today?[/bold]" if console else "\nWhat are you working on today?"
+    prompt_msg = "[bold]What are you working on?[/bold]" if console else "\nWhat are you working on today?"
     printx(prompt_msg)
 
     if console:
@@ -126,17 +141,18 @@ def run_focus():
     else:
         user_input = input("Enter a short task description (or idea #, leave blank to log 'status check'): ")
 
-    task = user_input.strip()
-    if not task:
+    task_input = user_input.strip()
+    if not task_input:
         task = "status check"
     else:
-        resolved = resolve_task_input(task)
-        idea_files = list((get_base() / "ideas").glob("*.md"))
-        is_known = any(resolved.lower() in f.stem.lower() or resolved.lower() in f.read_text().lower() for f in idea_files)
-        if not is_known:
-            log_idea(task)  # treat unknown task as quick idea
-            resolved = task
+        # 👇 Parse inline --title and --tag from user input
+        summary, title, body, tags = parse_focus_input(task_input)
 
-        task = resolved
+        from logflow.idea import log
+        idea_file = log(summary, title=title, body=body, tags=tags)
+        task = title or summary
+
 
     log_focus_task(task)
+    printx(f"🧠 Focused on: {task}")
+
