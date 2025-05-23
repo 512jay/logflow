@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented here.
 
+# Changelog
+
+## [v0.1.7] - 2025-05-23
+### Added
+- Multi-tag support via `--tag cli ux`
+- YAML frontmatter with tag arrays
+- Unified `log()` behavior for quick and titled ideas
+- Automatic `.md` creation with fallback slugify
+- Prep for `logflow focus` to accept inline arguments
+
+### Changed
+- `next_id.txt` now auto-repairs if empty
+- Removed junk files and added `.gitignore` cleanup
+
+### Fixed
+- Prevented `ValueError` crash on empty `next_id.txt`
+
+
 ## [v0.1.6] - 2025-05-23
 
 ### 🧪 Test and Maintenance Improvements
