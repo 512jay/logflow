@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented here.
 
+## [v0.1.6] - 2025-05-23
+
+### 🧪 Test and Maintenance Improvements
+
+- ✅ Fixed `test_log_creates_file` to match updated YAML metadata
+- ✅ Corrected ID increment test logic to avoid double-advance
+- ✅ Updated `test_idea_lifecycle.py` to work with modern `log()` return values
+- ✅ Replaced deprecated fixture `patch_base` with `tmp_path` and `monkeypatch`
+- 🧹 Prep for cleaner CI and future contributor support
+
 ## [v0.1.5] - 2025-05-23
 
 Logflow reaches its first public-ready milestone with export support, notes, and a full metadata system. 🎉
