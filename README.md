@@ -1,120 +1,52 @@
 ````md
 # Logflow
 
-[![PyPI](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
-[![Downloads](https://static.pepy.tech/badge/logflow-cli)](https://pepy.tech/project/logflow-cli)
-[![Release](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
+[![CI](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)
+[![License](https://img.shields.io/github/license/512jay/logflow.svg)](https://github.com/512jay/logflow/blob/main/LICENSE)
 
 [📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md) – Learn how to install and use Logflow in minutes.
-
 
 💡 **Tip:** For the best experience, install with extras:
 
 ```bash
 pipx install logflow-cli[rich,fancy_slugs]
+```
+
 This enables rich terminal output and emoji-safe filenames.
-
-A focused developer journaling and ideation loop.
-
----
-
-## 📦 Installation (Recommended: pipx)
-
-Logflow is a Python CLI app — install it globally without polluting your system Python:
-
-```bash
-pip install pipx
-pipx ensurepath
-pipx install logflow-cli
-````
-
-Then run:
-
-```bash
-logflow init
-logflow help
-```
-
----
-
-### 🔧 Alternative (Dev Setup with Poetry)
-
-```bash
-poetry install
-poetry run logflow init
-poetry run logflow focus
-```
-
----
-
-## ✨ Optional Enhancements
-
-Logflow works fine on its own — but these extras make it better:
-
-* 🎨 `rich` – pretty terminal output (colors, tables)
-* 🐍 `python-slugify` – better filenames (emoji and symbols allowed)
-
-### Install with extras using pipx:
-
-```bash
-pipx install logflow-cli[rich,slugify]
-```
-
-Or with Poetry:
-
-```bash
-poetry install --extras "rich slugify"
-```
 
 ---
 
 ## 🧠 How Logflow Stores Data
 
-By default, Logflow stores data under:
+By default, Logflow stores all your developer thoughts in:
 
 ```bash
-~/.logflow/
+./logflow/
 ```
 
-This includes:
+This directory includes:
 
-* `daily_logs/` – your developer logs
-* `idea_log.md` – list of quick thoughts
-* `ideas/` – structured .md files
+- `daily_logs/` – developer check-ins
+- `ideas/` – structured Markdown idea files
+- `idea_log.md` – append-only quick thought list
+- `completed_log.md` – a snapshot of done ideas
+- `next_id.txt` – internal idea counter
+- `config.toml` – optional config file
 
-You can customize this in **two ways**:
-
-### 1. 🔧 Use `LOGFLOW_HOME`
-
-Set a different base directory for all logs:
-
-```bash
-export LOGFLOW_HOME=/my/project/logflow_data
-```
-
-This makes all logs project-specific.
-
-### 2. 📝 Use `config.toml`
-
-Inside your `LOGFLOW_HOME` or `~/.logflow/`, add:
+### Example Config:
 
 ```toml
 [paths]
-log_dir = "/path/to/logs/folder"
-
-[other]
+log_dir = "logflow"
 scan_root = "parent"
 max_recent_ideas = 5
 ```
 
-This overrides even the environment variable and lets you split config from data.
+Run `logflow init` to generate this layout and config.
 
-To generate this file:
-
-```bash
-logflow init
-```
+---
 
 Or forcibly regenerate:
 
