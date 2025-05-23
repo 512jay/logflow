@@ -25,12 +25,7 @@ def load_config():
     return config
 
 
-
 def get_base():
-    # Use override for pytest environments
-    if "PYTEST_CURRENT_TEST" in os.environ:
-        return Path("/tmp/logflow-test")
-
     search_paths = [Path.cwd()] + list(Path.cwd().parents)
     for path in search_paths:
         config_path = path / "logflow" / "config.toml"
@@ -43,7 +38,8 @@ def get_base():
             except Exception:
                 continue
 
-    raise RuntimeError("No valid logflow/config.toml found. Please run `logflow init`.")
+    # Final fallback: local logflow/ folder
+    return Path.cwd() / "logflow"
 
 
 def get_repo_root():

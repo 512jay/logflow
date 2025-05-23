@@ -2,7 +2,29 @@
 
 All notable changes to this project will be documented here.
 
+## [v0.1.7] - 2025-05-23
+
+### Added
+- Multi-tag support via `--tag cli ux`
+- YAML frontmatter with tag arrays
+- Unified `log()` behavior for quick and titled ideas
+- Automatic `.md` creation with fallback slugify
+- Inline argument parsing for `logflow focus` (e.g. `--title` and `--tag` support)
+- Real test fixture for Logflow environments using `initialize_logflow()`
+- First full test: `test_focus_inline_parsing`
+
+### Changed
+- `next_id.txt` now auto-repairs if empty
+- `get_base()` now resolves from `config.toml` or defaults to `Path.cwd() / "logflow"`
+- `.gitignore` updated to exclude only generated log files, not source code
+
+### Fixed
+- Prevented `ValueError` crash on empty `next_id.txt`
+- Eliminated reliance on monkeypatching and global `/tmp` writes in tests
+- Ensured all tests pass in local and CI environments
+
 ## [v0.1.6] - 2025-05-23
+
 
 ### 🧪 Test and Maintenance Improvements
 
