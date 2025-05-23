@@ -1,12 +1,13 @@
 ````md
 # Logflow
 
-[![PyPI version](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)
-[![CI](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)
+[![PyPI version](https://img.shields.io/pypi/v/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)  
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/logflow-cli.svg)](https://pypi.org/project/logflow-cli/)  
+[![CI](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)  
 [![License](https://img.shields.io/github/license/512jay/logflow.svg)](https://github.com/512jay/logflow/blob/main/LICENSE)
 
 [📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md) – Learn how to install and use Logflow in minutes.
+
 
 💡 **Tip:** For the best experience, install with extras:
 
