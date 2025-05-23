@@ -30,7 +30,8 @@ subparsers.add_parser("help", help="Show CLI cheat sheet")
 # History command
 history_parser = subparsers.add_parser("history", help="Show developer task log")
 history_parser.add_argument("--days", type=int, help="Limit to last N days")
-history_parser.add_argument("--mode", choices=["full", "summary"], default="summary", help="Display mode (default: summary)")
+history_parser.add_argument("--mode", choices=["full", "summary"], help="Display mode")  # still here for future use
+
 
 # Index command
 subparsers.add_parser("index", help="Show idea index")
@@ -60,13 +61,32 @@ subparsers.add_parser("status", help="Show what you're working on")
 # Where command
 subparsers.add_parser("where", help="Show current log base directory")
 
+# Note command
+note_parser = subparsers.add_parser("note", help="Log a dev note")
+note_parser.add_argument("text", help="The note content")
+note_parser.add_argument("--id", help="Optional idea ID to attach")
+
+# Export command
+export_parser = subparsers.add_parser("export", help="Export idea summary as markdown or CSV")
+export_parser.add_argument("--tag", help="Filter by tag")
+export_parser.add_argument("--status", default="Active", help="Filter by status")
+export_parser.add_argument("--format", choices=["table", "csv"], default="table", help="Output format")
+export_parser.add_argument("--output", help="Output file (or omit for stdout)")
+
+
 
 def main():
     """Parse CLI arguments and dispatch the appropriate Logflow command."""
     args = parser.parse_args()
-
+    
     if args.command == "add":
         idea.log(args.summary, args.title, args.body, args.tag)
+    elif args.command == "export":
+        from logflow import export
+        export.export_ideas(tag=args.tag, status=args.status, fmt=args.format, output=args.output)
+    elif args.command == "note":
+        from logflow import note
+        note.log_note(args.text, args.id)
     elif args.command == "complete":
         idea.complete(args.title_or_id)
     elif args.command == "delete":
@@ -98,7 +118,7 @@ logflow pause                      # Mark end of session
 logflow history --mode summary     # View daily logs
         """)
     elif args.command == "history":
-        history.show_history(days=args.days or 1, mode=args.mode)
+        history.show_history(days=args.days or 1) 
     elif args.command == "index":
         idea_index.show()
     elif args.command == "init":

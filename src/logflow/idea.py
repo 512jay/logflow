@@ -42,12 +42,19 @@ def find_next_available_id():
     return current_id
 
 def get_next_id():
-    base = get_base()
-    path = base / "next_id.txt"
+    """Retrieve the next idea ID and increment the counter.
+
+    Returns:
+        str: A zero-padded 3-digit string ID (e.g., '001', '012').
+    """
+    path = get_base() / "next_id.txt"
     if not path.exists():
-        path.write_text("1")
-    next_id = find_next_available_id()
-    path.write_text(str(next_id + 1))
+        path.write_text("001")
+        return "001"
+
+    value = int(path.read_text().strip())
+    next_id = f"{value:03}"
+    path.write_text(f"{value + 1:03}")
     return next_id
 
 def slugify(text: str) -> str:
@@ -61,43 +68,48 @@ def slugify(text: str) -> str:
 def compute_hash(text: str) -> str:
     return hashlib.sha1(text.encode()).hexdigest()[:6]
 
-def log(summary: str, title: str = "", body: str = "", tag: str = ""):
-    ensure_dirs()
+def log(summary, title=None, body=None, tag=None):
+    """Log a quick idea to the master list and create a markdown file with YAML frontmatter.
+
+    Args:
+        summary (str): The summary or quick idea text.
+        title (str, optional): Title for the idea file.
+        body (str, optional): Detailed notes.
+        tag (str, optional): Optional tag for grouping.
+    """
     base = get_base()
     now = datetime.now()
-    timestamp = now.strftime("[%Y-%m-%d %H:%M]")
-    tag_str = f" [{tag}]" if tag else ""
-    with (base / "idea_log.md").open("a") as f:
-        f.write(f"{timestamp}{tag_str} {summary}\n")
+    timestamp = now.strftime("%Y-%m-%d %H:%M")
+    log_path = base / "idea_log.md"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
 
-    printx(f"✅ Logged: {summary} → {base / 'idea_log.md'}")
+    next_id = get_next_id()
+    shortline = f"- [{timestamp}] [{next_id}] {summary}"
+    with log_path.open("a") as f:
+        f.write(shortline + "\n")
 
-    idea_id = get_next_id()
-    id_prefix = f"{idea_id:03d}" if idea_id < 1000 else str(idea_id)
-    slug = slugify(title or summary)
-    filename = f"{id_prefix}_{slug}.md"
-    path = base / "ideas" / filename
+    # Create idea file with YAML-style metadata
+    idea_file = base / "ideas" / f"{next_id}_{slugify(summary)}.md"
+    idea_file.parent.mkdir(parents=True, exist_ok=True)
 
-    hash_str = compute_hash(f"{title}{summary}{body}")
-
-    with path.open("w") as f:
-        f.write(f"# {title or summary}\n\n")
-        if tag:
-            f.write(f"Tags: {tag}\n")
-        f.write(f"Created: {now.isoformat()}\n")
-        f.write(f"Hash: {hash_str}\n")
-        f.write(f"Status: Active\n")
-        f.write(f"Priority: normal\n")
-        f.write(f"Origin: manual\n\n")
-        f.write("---\n\n")
-        f.write(f"{summary}\n\n")
-        if body:
-            f.write("---\n\n")
-            f.write(f"{body}\n")
-
-    printx(f"📄 Created: {filename}")
-    return path
-
+    contents = [
+        "---",
+        f"ID: {next_id}",
+        f"Created: {timestamp}",
+        f"Title: {title or summary}",
+        f"Status: Active",
+        f"Tags: {tag or 'Uncategorized'}",
+        "---",
+        "",
+        f"# {title or summary}",
+        ""
+    ]
+    if body:
+        contents.append(body)
+    idea_file.write_text("\n".join(contents))
+    printx(f"✅ Logged: {summary} → {log_path}")
+    printx(f"📄 Created: {idea_file.name}")
+       
 def complete(identifier: str):
     ensure_dirs()
     base = get_base()
@@ -151,7 +163,7 @@ def delete(identifier: str):
 
     printx(f"🗑️ Moved to trash: {path.name}")
 
-def purge_trash():
+def purge_trashed_ideas():
     base = get_base()
     trash_dir = base / "ideas" / "trash"
     if not trash_dir.exists():
