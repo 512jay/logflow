@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented here.
 
+## [v0.1.5] – Planning & Documentation Upgrade (Planned)
+
+🧠 **Idea Management:**
+- Internal dev idea tracker powered by Logflow itself
+- Use `logflow list --status active` to browse backlog
+
+📘 **Documentation Site:**
+- `mkdocs.yml` and `/docs/` now power public GitHub Pages
+- Hosted at https://512jay.github.io/logflow/
+
+🔁 **Planned:**
+- `logflow tags` to list common tag categories
+- Markdown export of active ideas for dev planning
+
+
 ## [v0.1.4] – Docs & Publishing Polish
 
 📘 **Docs:**

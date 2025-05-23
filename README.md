@@ -1,5 +1,3 @@
-### ✅ `README.md`:
-
 ````md
 # Logflow
 
@@ -8,22 +6,16 @@
 [![Release](https://github.com/512jay/logflow/actions/workflows/release.yml/badge.svg)](https://github.com/512jay/logflow/actions/workflows/release.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+[📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md) – Learn how to install and use Logflow in minutes.
 
-[📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md)
+
+> 💡 **Tip:** For the best experience, install with extras:  
+> ```bash
+> pipx install logflow-cli[rich,slugify]
+> ```
+> This enables rich terminal output and emoji-safe filenames.
 
 A focused developer journaling and ideation loop.
-
-## 🛠️ Features
-
-- `logflow add` — Quick ideas or structured logs with title/body/tag
-- `logflow focus` — Daily check-in: view recent ideas + start a task
-- `logflow history` — See what you worked on and when
-- `logflow index` — Lists all structured ideas
-- `logflow complete` / `delete` / `purge` — Mark ideas as done or clean up
-- `logflow pause` — Mark end of session
-- `logflow status` — Show currently active task + time elapsed
-- `logflow init` — Generate config.toml and folder structure
-- `logflow help` — Built-in command cheat sheet
 
 ---
 
@@ -52,6 +44,27 @@ logflow help
 poetry install
 poetry run logflow init
 poetry run logflow focus
+```
+
+---
+
+## ✨ Optional Enhancements
+
+Logflow works fine on its own — but these extras make it better:
+
+* 🎨 `rich` – pretty terminal output (colors, tables)
+* 🐍 `python-slugify` – better filenames (emoji and symbols allowed)
+
+### Install with extras using pipx:
+
+```bash
+pipx install logflow-cli[rich,slugify]
+```
+
+Or with Poetry:
+
+```bash
+poetry install --extras "rich slugify"
 ```
 
 ---
@@ -164,4 +177,12 @@ MIT
 
 ### 📣 Maintained by [Oravox LLC](mailto:oravoxco@gmail.com) — freely available for solo devs, teams, and contributors.
 
+```
+
+---
+
+Let me know if you'd like:
+- A PR-ready version of this
+- The `quickstart.md` file scaffolded and saved
+- A next-version dev checklist for `v0.1.5` planning
 ```

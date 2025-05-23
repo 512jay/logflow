@@ -1,0 +1,9 @@
+site_name: Logflow
+repo_url: https://github.com/512jay/logflow
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Dev Table: dev_table.md
+  - v0.1.5 Ideas: v0.1.5_ideas.md
+theme:
+  name: material

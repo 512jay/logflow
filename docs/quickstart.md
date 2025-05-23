@@ -1,35 +1,42 @@
+````md
 # 🚀 Logflow Quickstart
 
 Welcome to **Logflow CLI** — a focused journaling and ideation loop for developers.
 
 ---
 
-## 📦 Installation
-
-You can install Logflow globally with:
+## 📦 Installation (Recommended via pipx)
 
 ```bash
-pip install logflow-cli
-```
+pip install pipx
+pipx ensurepath
+pipx install logflow-cli[rich,slugify]
+````
 
-Or with Poetry:
+This installs Logflow globally with optional extras:
 
-```bash
-poetry add logflow-cli
-```
+* `rich` → beautiful terminal formatting
+* `python-slugify` → emoji- and symbol-safe filenames
 
 ---
 
 ## 🧪 First Commands to Try
 
 ```bash
+logflow init
 logflow add "Set up Logflow on my new machine"
 logflow focus
 logflow pause
 logflow status
 ```
 
-These will log your first idea, start a dev session, stop it, and check your current task — all saved to markdown.
+These commands will:
+
+* Create your config
+* Add your first idea
+* Start a dev session
+* End a session
+* Show current task
 
 ---
 
@@ -37,24 +44,28 @@ These will log your first idea, start a dev session, stop it, and check your cur
 
 By default, Logflow uses:
 
-```
+```bash
 ~/.logflow/
 ```
 
 This includes:
 
-- `daily_logs/` – your developer logs
-- `idea_log.md` – list of quick thoughts
-- `ideas/` – structured idea files
-- `completed/` and `trash/` folders for status transitions
+* `daily_logs/` – your developer logs
+* `idea_log.md` – list of quick thoughts
+* `ideas/` – structured idea files
+* `ideas/completed/` – done ideas
+* `ideas/trash/` – soft-deleted ideas
 
-You can override the location via `LOGFLOW_HOME` or `config.toml`.
+Customize with:
+
+* `LOGFLOW_HOME` env var
+* Or `config.toml` inside your repo/project
 
 ---
 
 ## 🛠 Customize Your Workflow
 
-You can create aliases in your `.zshrc` or `.bashrc`:
+Set aliases in your shell config:
 
 ```bash
 alias lf="logflow focus"
@@ -62,7 +73,7 @@ alias la="logflow add"
 alias ls="logflow status"
 ```
 
-Or define a VS Code task:
+Or add a VS Code task:
 
 ```json
 {
@@ -76,10 +87,10 @@ Or define a VS Code task:
 
 ## 📚 Want More?
 
-See:
+* [📘 PyPI Project Page](https://pypi.org/project/logflow-cli/)
+* [💻 GitHub Repository](https://github.com/512jay/logflow)
+* Run `logflow help` to see the full command list
 
-- [PyPI page](https://pypi.org/project/logflow-cli/)
-- [GitHub repo](https://github.com/512jay/logflow)
-- `logflow help` for built-in commands
+✨ Enjoy the flow.
 
-Enjoy the flow ✨
+```
