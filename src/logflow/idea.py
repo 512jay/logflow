@@ -2,13 +2,13 @@ from datetime import datetime
 from pathlib import Path
 import shutil
 import re
-import os
+import uuid
 import hashlib
 
 from logflow import idea_index
 from logflow.utils import printx
 from logflow.paths import get_base
-from logflow.idea_utils import set_status, get_status
+from logflow.idea_utils import set_status, get_status, write_metadata_block
 
 try:
     from rich.console import Console
@@ -52,10 +52,16 @@ def get_next_id():
         path.write_text("001")
         return "001"
 
-    value = int(path.read_text().strip())
+    raw = path.read_text().strip()
+    if not raw.isdigit():
+        path.write_text("001")
+        return "001"
+
+    value = int(raw)
     next_id = f"{value:03}"
     path.write_text(f"{value + 1:03}")
     return next_id
+
 
 def slugify(text: str) -> str:
     try:
@@ -68,48 +74,33 @@ def slugify(text: str) -> str:
 def compute_hash(text: str) -> str:
     return hashlib.sha1(text.encode()).hexdigest()[:6]
 
-def log(summary, title=None, body=None, tag=None):
-    """Log a quick idea to the master list and create a markdown file with YAML frontmatter.
-
-    Args:
-        summary (str): The summary or quick idea text.
-        title (str, optional): Title for the idea file.
-        body (str, optional): Detailed notes.
-        tag (str, optional): Optional tag for grouping.
-    """
-    base = get_base()
-    now = datetime.now()
-    timestamp = now.strftime("%Y-%m-%d %H:%M")
-    log_path = base / "idea_log.md"
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-
+def log(summary, title=None, body=None, tags=None):
+    title = title or summary
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
     next_id = get_next_id()
-    shortline = f"- [{timestamp}] [{next_id}] {summary}"
-    with log_path.open("a") as f:
-        f.write(shortline + "\n")
 
-    # Create idea file with YAML-style metadata
-    idea_file = base / "ideas" / f"{next_id}_{slugify(summary)}.md"
-    idea_file.parent.mkdir(parents=True, exist_ok=True)
+    base = get_base()
+    idea_dir = base / "ideas"
+    slug = slugify(title)
+    path = idea_dir / f"{next_id}_{slug}.md"
+    path.touch()
 
-    contents = [
-        "---",
-        f"ID: {next_id}",
-        f"Created: {timestamp}",
-        f"Title: {title or summary}",
-        f"Status: Active",
-        f"Tags: {tag or 'Uncategorized'}",
-        "---",
-        "",
-        f"# {title or summary}",
-        ""
-    ]
-    if body:
-        contents.append(body)
-    idea_file.write_text("\n".join(contents))
-    printx(f"✅ Logged: {summary} → {log_path}")
-    printx(f"📄 Created: {idea_file.name}")
-    return idea_file
+    metadata = {
+        "ID": next_id,
+        "Created": now,
+        "Title": title,
+        "Status": "Active",
+        "Tags": tags or [],
+    }
+    write_metadata_block(path, metadata)
+
+    content = body or ("\n" + summary.strip())
+    if content:
+        with path.open("a") as f:
+            f.write("\n" + content.strip() + "\n")
+
+    print(f"✅ Logged: {title} → {path}")
+    return path
        
 def complete(identifier: str):
     ensure_dirs()

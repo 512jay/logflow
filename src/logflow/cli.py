@@ -11,7 +11,11 @@ add_parser = subparsers.add_parser("add", help="Log a new idea")
 add_parser.add_argument("summary", help="Summary or idea text")
 add_parser.add_argument("--title", help="Optional title to create an idea file")
 add_parser.add_argument("--body", help="Optional body text")
-add_parser.add_argument("--tag", help="Optional tag")
+add_parser.add_argument(
+    "--tag",
+    nargs="+",
+    help="Optional tags (e.g., --tag cli ux devtools)"
+)
 
 # Complete command
 complete_parser = subparsers.add_parser("complete", help="Mark idea as completed")

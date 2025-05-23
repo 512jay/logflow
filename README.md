@@ -12,7 +12,7 @@
 💡 **Tip:** For the best experience, install with extras:
 
 ```bash
-pipx install logflow-cli[rich,slugify]
+pipx install logflow-cli[rich,fancy_slugs]
 This enables rich terminal output and emoji-safe filenames.
 
 A focused developer journaling and ideation loop.

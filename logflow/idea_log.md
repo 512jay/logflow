@@ -9,3 +9,5 @@
 - [2025-05-22 22:54] [009] Add --reset mode to logflow init to wipe and reinitialize logs
 - [2025-05-22 22:54] [010] Add --dry-run to logflow purge for safe preview before deletion
 - [2025-05-22 22:54] [011] Add warnings when add() would overwrite existing files (ID reuse)
+- [2025-05-23 00:06] [012] Fix broken badges
+- [2025-05-23 10:12] [013] add multitag support --tag cli

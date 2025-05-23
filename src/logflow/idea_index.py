@@ -5,6 +5,7 @@ from collections import defaultdict
 from logflow.paths import get_base
 from logflow.utils import printx
 from logflow.idea_utils import get_status
+from logflow.idea_utils import parse_metadata
 
 try:
     from rich.console import Console
@@ -13,17 +14,14 @@ except ImportError:
     console = None
 
 
-def extract_tag_and_title(filepath: Path):
-    tag = "Uncategorized"
-    title = filepath.stem.replace("_", " ").title()
 
-    with filepath.open() as f:
-        for line in f:
-            if line.lower().startswith("tags:"):
-                tag = line.strip().split(":", 1)[1].strip().lower()
-            elif line.strip().startswith("# "):
-                title = line.strip().lstrip("# ").strip()
-    return tag, title
+def extract_tag_and_title(filepath: Path):
+    meta = parse_metadata(filepath)
+    tags = meta.get("tags", [])
+    tag_str = tags[0] if tags else "uncategorized"
+    title = meta.get("title", filepath.stem.replace("_", " ").title())
+    return tag_str, title
+
 
 
 def generate():
