@@ -191,6 +191,17 @@ typing-extensions = {version = ">=4.0.0,<5.0", markers = "python_version < \"3.9
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
+name = "slugify"
+version = "0.0.1"
+description = "A generic slugifier."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "slugify-0.0.1.tar.gz", hash = "sha256:c5703cc11c1a6947536f3ce8bb306766b8bb5a84a53717f5a703ce0f18235e4c"},
+]
+
+[[package]]
 name = "text-unidecode"
 version = "1.3"
 description = "The most basic Text::Unidecode port"
@@ -266,4 +277,4 @@ rich = ["rich"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.8"
-content-hash = "ce9367123cf46c2e2fa580afa385c517f5ffb2bb8f3e3a8f82359dbe6528a513"
+content-hash = "066d59914c21f77693933ac13611ed5cd9d2c8dfa3b4fb0f706b974568e21df0"

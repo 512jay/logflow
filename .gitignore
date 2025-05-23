@@ -1,4 +1,4 @@
-# Python
+# Python artifacts
 __pycache__/
 *.py[cod]
 *.egg
@@ -8,15 +8,15 @@ build/
 *.log
 
 # Poetry
-poetry.lock
 # (Optional: keep poetry.lock if you want reproducible builds)
+poetry.lock
 
 # Virtual Environments
-.env
 .venv/
 venv/
 ENV/
 env/
+.env
 
 # Pytest & Coverage
 .cache/
@@ -25,15 +25,21 @@ env/
 coverage.xml
 htmlcov/
 
-# VS Code
+# VS Code & IDEs
 .vscode/
+.idea/
 
 # OS & Editor junk
 .DS_Store
 Thumbs.db
+*.swp
+*.bak
+*~
 
 # Logflow specific
 logflow_tests.zip
-*.bak
-*.swp
-*~
+
+# Ignore logs and trash (keep ideas public)
+logflow/daily_logs/
+logflow/ideas/trash/
+logflow/ideas/completed/

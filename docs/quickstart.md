@@ -94,3 +94,10 @@ Or add a VS Code task:
 ✨ Enjoy the flow.
 
 ```
+---
+
+### ✨ New in v0.1.5
+
+- `logflow export` for table or CSV exports
+- `logflow note` to log timestamped thoughts
+- YAML frontmatter metadata for all ideas

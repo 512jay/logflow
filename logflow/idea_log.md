@@ -1,0 +1,11 @@
+- [2025-05-22 22:54] [001] Support grouped export by status (e.g., changelog view)
+- [2025-05-22 22:54] [002] Add --sort flag to export command (by date, title, or ID)
+- [2025-05-22 22:54] [003] Enable export --dry-run or preview mode
+- [2025-05-22 22:54] [004] Allow logflow note to append to completed or deleted ideas
+- [2025-05-22 22:54] [005] Add --attach-to option to logflow note for specific files
+- [2025-05-22 22:54] [006] Create logflow fix-metadata command to repair YAML headers
+- [2025-05-22 22:54] [007] Add logflow review to summarize recent activity
+- [2025-05-22 22:54] [008] Add logflow tag-cloud command to visualize tag usage
+- [2025-05-22 22:54] [009] Add --reset mode to logflow init to wipe and reinitialize logs
+- [2025-05-22 22:54] [010] Add --dry-run to logflow purge for safe preview before deletion
+- [2025-05-22 22:54] [011] Add warnings when add() would overwrite existing files (ID reuse)

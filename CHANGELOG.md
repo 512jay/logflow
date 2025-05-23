@@ -2,19 +2,31 @@
 
 All notable changes to this project will be documented here.
 
-## [v0.1.5] – Planning & Documentation Upgrade (Planned)
+## [v0.1.5] - 2025-05-23
 
-🧠 **Idea Management:**
-- Internal dev idea tracker powered by Logflow itself
-- Use `logflow list --status active` to browse backlog
+Logflow reaches its first public-ready milestone with export support, notes, and a full metadata system. 🎉
 
-📘 **Documentation Site:**
-- `mkdocs.yml` and `/docs/` now power public GitHub Pages
-- Hosted at https://512jay.github.io/logflow/
+### ✨ New Features
+- ✅ Added `logflow export` with markdown/CSV output, filtering by tag/status
+- ✅ Added `logflow note` to log timestamped notes and append to idea files
+- ✅ `logflow status` now reliably shows the current task or paused state
+- ✅ Ideas now include YAML frontmatter with metadata (ID, Title, Tags, Status)
+- ✅ `logflow add` auto-generates clean metadata using YAML block
+- ✅ Legacy `.md` files are gracefully skipped with warnings during export
+- ✅ CLI now supports safe ID sequencing (no reuse after deletes)
+- ✅ `logflow purge`, `history`, `focus`, and `index` fully verified
+- ✅ Future roadmap added internally as ideas using Logflow itself
 
-🔁 **Planned:**
-- `logflow tags` to list common tag categories
-- Markdown export of active ideas for dev planning
+### 🔧 Improvements
+- Improved CLI error messages and fallback behaviors
+- Added debug output for export filters
+- Gracefully skips and logs issues with broken idea files
+- Confirmed compatibility with pipx and poetry workflows
+
+### 📁 Developer Experience
+- Roadmap logged using Logflow itself
+- Supports rich + slugify optional dependencies
+- Clean YAML metadata in all idea files
 
 
 ## [v0.1.4] – Docs & Publishing Polish

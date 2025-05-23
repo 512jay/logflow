@@ -1,0 +1,204 @@
+🧵 How I stopped drowning in sticky notes and started shipping code again — with Logflow.
+
+A local-first CLI tool that helps developers log ideas, focus better, and ship with clarity.
+
+Here's how I use it every week 👇
+
+---
+
+1️⃣ I was drowning in sticky notes, Notion docs, and browser tabs.
+
+I needed something lighter. Local. Minimal.
+
+Something to capture what I’m working on — and *why* — without friction.
+
+Then I found `logflow`.
+
+---
+
+2️⃣ Installed it with:
+
+```bash
+pipx install logflow-cli[rich,slugify]
+logflow init
+```
+
+It created:
+
+```
+📁 logflow/
+├── idea_log.md
+├── ideas/
+├── daily_logs/
+├── next_id.txt
+└── config.toml
+```
+
+Simple, clean, no setup.
+
+---
+
+3️⃣ First I captured some ideas:
+
+```bash
+logflow add "Build export command" --tag feature
+logflow add "Fix crash when input is blank" --tag bug
+```
+
+That created `.md` files with this frontmatter:
+
+```yaml
+---
+ID: 001
+Title: Build export command
+Tags: feature
+Status: Active
+Created: 2024-05-22 10:03
+---
+```
+
+📄 Stored in `logflow/ideas/001_build-export-command.md`
+
+---
+
+4️⃣ Next I ran:
+
+```bash
+logflow focus
+```
+
+And it felt *like magic*:
+
+```
+🧠 Logflow Focus Mode
+🔍 Scanning repos under: ./myproject
+
+📁 Repo Status
+myproject: ✅ Clean
+logflow: ✅ Clean
+
+📝 Recent Ideas:
+- [002] Fix crash when input is blank
+- [001] Build export command
+
+What are you working on today?
+Enter a short task description (or idea #, leave blank to log 'status check'):
+> 001
+
+✅ Logged: working on Build export command → logflow/daily_logs/2024-05-22.md
+```
+
+That session is now timestamped in my dev log.
+
+---
+
+5️⃣ Mid-task, I hit an issue.
+
+So I logged a note — without breaking focus:
+
+```bash
+logflow note "Refactor CSV formatting to support empty titles"
+```
+
+That added a markdown file with:
+
+```markdown
+---
+ID: 001
+Title: Build export command
+Tags: feature
+Status: Active
+Created: 2024-05-22 10:03
+---
+
+# Build export command
+
+## Notes
+
+- [13:42] Refactor CSV formatting to support empty titles
+```
+
+I didn’t lose my train of thought.  
+And I didn’t lose the note.
+
+---
+
+6️⃣ Later I wanted to share progress with a teammate.
+
+```bash
+logflow export --tag feature --format table
+```
+
+Output:
+
+```
+| ID  | Title               | Tag     | Status |
+|-----|---------------------|---------|--------|
+| 001 | Build export command| feature | Active |
+```
+
+I dropped it in Slack. Instant clarity.
+
+---
+
+7️⃣ End of week routine:
+
+```bash
+logflow complete 001
+logflow pause
+logflow history --days 3
+```
+
+Output:
+
+```
+📅 Developer Log — Last 3 Days
+┏━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Date       ┃ Time  ┃ Task                         ┃
+┡━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ 2024-05-22 │ 10:03 │ working on Build export ...  │
+│ 2024-05-22 │ 13:42 │ note: Refactor CSV ...       │
+│ 2024-05-22 │ 16:00 │ paused session               │
+└────────────┴───────┴──────────────────────────────┘
+```
+
+Clean.
+Tidy.
+Trackable.
+
+---
+
+8️⃣ What I love about Logflow:
+
+- ✅ Instant CLI logging with `add`, `focus`, `note`
+- 📘 Markdown + YAML: Portable and git-friendly
+- 🔍 No cloud, no accounts
+- 🧠 Feels like journaling for your dev brain
+
+---
+
+9️⃣ Want to try it?
+
+```bash
+pipx install logflow-cli[rich,slugify]
+logflow init
+```
+
+Then try:
+
+```bash
+logflow add "Refactor core logic" --tag internal
+logflow focus
+```
+
+You’ll never lose track again.
+
+---
+
+🔗 More:
+PyPI → https://pypi.org/project/logflow-cli  
+GitHub → https://github.com/512jay/logflow  
+Docs → https://512jay.github.io/logflow/docs/quickstart
+
+Built by devs, for devs.  
+Ship with clarity 🧠

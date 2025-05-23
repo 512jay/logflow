@@ -186,3 +186,35 @@ Let me know if you'd like:
 - The `quickstart.md` file scaffolded and saved
 - A next-version dev checklist for `v0.1.5` planning
 ```
+
+
+### ✨ New in v0.1.5
+
+#### `logflow export`
+Export your backlog or roadmap to a markdown table or CSV file.
+
+```bash
+logflow export --tag internal --format table
+logflow export --format csv --output backlog.csv
+```
+
+#### `logflow note`
+Log mid-task notes to the daily log, and optionally append them to an idea file.
+
+```bash
+logflow note "Clarified export logic"
+logflow note "Linked to issue" --id 002
+```
+
+#### YAML Frontmatter Metadata
+All idea files now include structured frontmatter:
+
+```yaml
+---
+ID: 002
+Title: Export feature
+Tags: internal
+Status: Active
+Created: 2025-05-22 20:58
+---
+```
