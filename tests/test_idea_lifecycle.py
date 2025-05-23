@@ -1,14 +1,19 @@
 
 from logflow.idea import log, complete, delete
 from logflow.paths import get_base
+from logflow.idea import ensure_dirs
+
 
 def test_idea_add_complete_delete_purge(tmp_path):
+    from logflow.idea import ensure_dirs
+    ensure_dirs()
+
     base = get_base()
     idea_dir = base / "ideas"
     trash_dir = idea_dir / "trash"
     completed_dir = idea_dir / "completed"
 
-    idea_file = log("Test idea", title="Lifecycle Test", tag="pytest")
+    idea_file = log("Test idea", title="Lifecycle Test", tags=["pytest"])
     idea_id = idea_file.stem.split("_")[0]
 
     complete(idea_id)
