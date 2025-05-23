@@ -9,11 +9,11 @@
 [📘 Quickstart Guide](https://github.com/512jay/logflow/blob/main/docs/quickstart.md) – Learn how to install and use Logflow in minutes.
 
 
-> 💡 **Tip:** For the best experience, install with extras:  
-> ```bash
-> pipx install logflow-cli[rich,slugify]
-> ```
-> This enables rich terminal output and emoji-safe filenames.
+💡 **Tip:** For the best experience, install with extras:
+
+```bash
+pipx install logflow-cli[rich,slugify]
+This enables rich terminal output and emoji-safe filenames.
 
 A focused developer journaling and ideation loop.
 
