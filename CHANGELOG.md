@@ -2,7 +2,37 @@
 
 All notable changes to this project will be documented here.
 
+## [v0.1.4] – Docs & Publishing Polish
+
+📘 **Docs:**
+- Fixed broken Quickstart Guide link on PyPI
+- Added PyPI, Downloads, CI, and License badges to `README.md`
+- Clarified install instructions with `pipx` recommendation
+
+🚀 **Release:**
+- Confirmed GitHub Actions workflow triggers on tag
+- Verified `release.yml` supports publishing to PyPI via secrets
+
+✨ **Other:**
+- Cleaned up CLI output for `init` and `focus`
+- Confirmed pipx install works reliably from PyPI
+
+## [v0.1.3] – Bootstrap Fix & pipx Compatibility
+
+🛠 **Bugfix:**
+- Fixed critical import-time crash when running `logflow init` before a config file existed
+- Now fully supports first-time installs via PyPI and pipx without errors
+
+✨ **Improvements:**
+- Deferred config loading until needed (`devloop.py` patched)
+- Added support for safe fresh installs on managed Python environments (PEP 668)
+- Compatible with pipx and PyPI global usage
+
 ---
+
+## [v0.1.2] – (Skipped / Tag Correction)
+
+- Tag correction from previous typo commit (`Realase v0.1.2`)
 
 ## [v0.1.0] – Initial Release
 
