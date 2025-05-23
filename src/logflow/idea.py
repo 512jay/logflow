@@ -109,6 +109,7 @@ def log(summary, title=None, body=None, tag=None):
     idea_file.write_text("\n".join(contents))
     printx(f"✅ Logged: {summary} → {log_path}")
     printx(f"📄 Created: {idea_file.name}")
+    return idea_file
        
 def complete(identifier: str):
     ensure_dirs()
