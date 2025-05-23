@@ -43,6 +43,13 @@ logflow_tests.zip
 logflow/daily_logs/
 logflow/ideas/trash/
 logflow/ideas/completed/
+# Ignore generated runtime files only
+logflow/config.toml
+logflow/idea_log.md
+logflow/completed_log.md
+logflow/next_id.txt
+logflow/daily_logs/
+logflow/ideas/
 
 # Compiled Python
 __pycache__/
